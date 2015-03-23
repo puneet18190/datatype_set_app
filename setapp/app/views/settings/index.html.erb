@@ -1,0 +1,15 @@
+<div class="container">
+	<h1>Global Configuration Settings</h1>
+
+	<table class="table table-striped">
+		<%@setting.each do |obj|%>
+			<tr>
+				<td><%= "#{obj.name}" %></td>
+				<td><%= "#{obj.value}" %></td>
+				<td><%= link_to "Edit", edit_setting_path(obj)%></td>
+			</tr> 
+		<%end%>
+		</br>
+	</table>
+	<a href="/settings/new">Add New Setting</a>
+</div>	

@@ -1,0 +1,48 @@
+<div class="container">
+  <h1>Edit Setting</h1>
+
+  <%= form_for(@setting) do |f| %>
+    <div class="field form-group">
+        <%= f.label :Name %>
+        <%= f.text_field :name, :class=>"form-control" %>
+    </div>
+    <div class="field form-group">
+        <%= f.label :Value %>
+        <%= f.text_field :value, :class=>"value form-control" %>
+    </div>
+    <div class="field form-group">
+        <%= f.label "Data Type" %>
+        <%#= f.select(:type, "String" ) %>
+        <%= f.select :type, options_for_select(["String", "Integer", "Float", "Boolean",],params[:data_type]), :class => 'select' %>
+    </div>
+
+    <div class="actions">
+      <%= f.submit "Update", :class=> "btn btn-primary" %>
+    </div>
+  <%end%>
+</div>
+<script type="text/javascript">
+  $("option").click(function(){
+    if($(this).html() == "Integer"){
+      if($.isNumeric($(".value").val()) == false){
+        alert("please Enter correct value")
+        $(".value").val("")
+        $("#test_type").val("String")
+      }
+    }else if($(this).html() == "Float"){
+      if (!isNaN($(".value").val()) && $(".value").val().toString().indexOf('.') != -1){
+        alert('this is a numberic value and I\'m sure it is a float.');
+        alert("please Enter correct value")
+        $(".value").val("")
+        $("#test_type").val("String")
+      }
+    }else if($(this).html() == "Boolean"){
+      if ($(".value").val() == "true" || $(".value").val() == "false"){
+        alert('this is a numberic value and I\'m sure it is a float.');
+        alert("please Enter correct value")
+        $(".value").val("")
+        $("#test_type").val("String")
+      }
+    }
+  })
+</script>
